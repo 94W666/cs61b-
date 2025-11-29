@@ -43,7 +43,12 @@ public class IntList {
      */
     public static IntList incrRecursiveNondestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L == null) {
+            return null;
+        }
+        IntList newHead = new IntList(L.first + x,null);
+        newHead.rest = incrRecursiveNondestructive(L.rest,x);
+        return newHead;
     }
 
     /**
@@ -53,7 +58,12 @@ public class IntList {
      */
     public static IntList incrRecursiveDestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L == null) {
+            return null;
+        }
+        L.first += x;
+        incrRecursiveDestructive(L.rest,x);
+        return L;
     }
 
     /**
@@ -63,7 +73,18 @@ public class IntList {
      */
     public static IntList incrIterativeNondestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L == null) {
+            return null;
+        }
+        IntList p = new IntList(L.first + x,null);
+        IntList newHead = p;
+        IntList temp = L.rest;
+        while(temp != null) {
+            p.rest = new IntList(temp.first + x,null);
+            p = p.rest;
+            temp = temp.rest;
+        }
+        return newHead;
     }
 
     /**
@@ -74,7 +95,15 @@ public class IntList {
      */
     public static IntList incrIterativeDestructive(IntList L, int x) {
         // TODO: Fill in this code
-        return null;
+        if(L == null) {
+            return null;
+        }
+        IntList p = L;
+        while(p != null) {
+            p.first += x;
+            p = p.rest;
+        }
+        return L;
     }
 
     /**
@@ -83,7 +112,21 @@ public class IntList {
      */
     public static IntList concatenate(IntList L1, IntList L2) {
         // TODO: Fill in this code
-        return null;
+        if(L1 == null && L2 == null) {
+            return null;
+        }
+        if(L1 == null) {
+            return L2;
+        }
+        if(L2 == null) {
+            return L1;
+        }
+        IntList p = L1;
+        while(p.rest != null) {
+            p = p.rest;
+        }
+        p.rest = L2;
+        return L1;
     }
 
     /*
